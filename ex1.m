@@ -1,12 +1,24 @@
+%{
+Windows 10
+Matlab R2020b
+%}
 
-N = 2048;
+%% Example 8.2.1: Periodogram of White Noise
+% Samples (length of signal)
+N = 32;
 n = [0:N-1];
-vn = randn(1, N)
-norv = (n/N * 2*pi)/pi;
+% White noise
+vn = randn(1, N);
+% Normalize axis
+nor_v = n/N;
+% Plotting
 figure(1);
 stem(norv, vn);
+% Calculating periodogram
 P = periodogram(vn);
 P = 10 * log10(P);
-norP = ([0:1023]/1024 * 2 * pi)/pi;
+% Normalize axis
+nor_P = ([0:1023]/512);
+% Plotting
 figure(2);
-plot(norP,P);
+h = plot(norP, P); axis([0 1 -30 10]);
